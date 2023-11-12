@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <li class="gallery item">
 	   <a class="gallery link" href="${item.large}">
           <img
-            class="gallery image"
+            class="galleryimage"
             src="${item.small}"
             data-source="${item.large}"
             alt="${item.alt}"
