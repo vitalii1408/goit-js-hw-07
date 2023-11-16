@@ -50,15 +50,20 @@ document.addEventListener('DOMContentLoaded', () => {
   function openModal(source) {
     const instance = basicLightbox.create(`
       <img src="${source}" alt="Image description" />
-    `);
+    `, {
+	onShow: (instance) => {document.addEventListener('keydown', closeModalOnEscape);},
+	/*
+	 * Function that gets executed before the lightbox closes.
+	 * Returning false will prevent the lightbox from closing.
+	 */
+	onClose: (instance) => { document.removeEventListener('keydown', closeModalOnEscape);}
+});
     instance.show();
     const closeModalOnEscape = (e) => {
       if (e.key === 'Escape') {
         instance.close();
-        document.removeEventListener('keydown', closeModalOnEscape);
       }
     };
-    document.addEventListener('keydown', closeModalOnEscape);
   }
 });
 console.log(galleryItems);
